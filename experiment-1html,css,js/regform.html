@@ -1,0 +1,97 @@
+
+<html>
+    <head>
+        <title>Forms</title>
+        <style>
+body
+{
+ margin:30px;
+background-color:#affe;
+}
+#n,#eid,#c,#ta,#db
+{
+border-color:black;
+border-style:solid;
+    font-family:sans-serif;
+    color: purple;
+}
+
+
+        </style>
+    </head>
+    <body>
+        <h1>REGISTRATION FORM</h1>
+        <h3>Please enter your details to get registered to the course</h3>
+        <form name="f1" action="result.html">
+        <table>
+            <tr>
+                <td>Name</td>
+                <td><input class='in' type="text" name="nm" placeholder="Enter your first name" max="5" maxlength="30" required="'required" id="n">
+                </td>
+            </tr>
+            <tr>
+                <td>Date of Birth</td>
+                <td>
+                    <input class='in' type="date" name="dob" required="required" id="db">
+                </td>
+               
+            </tr>
+            <tr>
+                <td>Contact</td>
+                <td>
+                <input class='in' type="text" name="co" placeholder="Enter mobileno" maxlength="10" required="required" id="c">
+                </td>
+            </tr>
+            <tr>
+                <td>Gender</td>
+                <td>
+                    <input type="radio" name="Gen" required="required">M
+                    <input type="radio" name="Gen" required="required">F
+                </td>
+            </tr>
+            <tr>
+                <td>Email Id</td>
+                <td>
+                    <input class='in' type="email" name="em" placeholder="Enter mail id" max="5" maxlength="50" required="required" id="eid">
+                </td>
+            </tr>
+            <tr>
+                <td>Course</td>
+                <td>
+                    <select id="ck">
+                        <option value="A" required="required">AI&ML</option>
+                        <option value="F" required="required">Full stack</option>
+                        <option value="D" required="required">DSA using python</option>
+                        <option value="J" required="required">DSA using java</option>
+                        <option value="FL" required="required">Flask</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Preferred Languages</td>
+                <td>
+                    <input class='Gen' type="checkbox" name="ck">English
+                    <input class='Gen' type="checkbox" name="ck" >Hindi
+                    <input class='Gen' type="checkbox" name="ck" >Spanish
+                    <input class='Gen' type="checkbox" name="ck">French
+                </td>
+            </tr>
+            <tr>
+                <td>From where did you know about this platform</td>
+                <td>
+                    <input class='in' type="text" name="infoc" max="15" maxlength="50" required="required" id="ta">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input class="sub"  type="submit" name="submit">
+                </td>
+                <td>
+                    <input class="sub" type="reset" name="reset">
+                </td>
+            </tr>
+        </table>
+
+        </form>
+    </body>
+</html>
