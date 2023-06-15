@@ -1,0 +1,200 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-6tNdpTT1fM3ZzsMVJh+P+j5FJx1nd+Pheq3S4lqD3IMoIZ7R49tDgff4tXg3gjx9V+/P3P7rs2UZkCpRc0Ln3w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+           
+            
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+            <style>         
+    h1{
+        text-align: center;
+        color: white;
+    }
+
+            #div1{
+                background-color:rgb(245, 103, 150);
+                width:auto;
+                height:120;
+                display:flex; /* use flexbox layout */
+               align-items: center;
+                
+            }
+            #g{
+                background-color: rgb(245, 103, 150);
+                width:auto;
+                height:120;
+                display:flex; /* use flexbox layout */
+               align-items: center;
+                
+            }
+              #di{
+                
+                background-color:white;
+                width:auto;
+                height:100;
+                display: flex;
+               align-items:center; 
+                
+             }   
+            #i1{
+                background-color:rgb(245, 103, 150);
+                margin:20px;
+            }
+            .r{
+                margin-top:10px;
+                width: 120px;
+                height: 40px;
+                background-color:white;
+                border:2px;
+                border-color:rgb(23, 23, 23) ;
+            }
+             .r:hover{
+                background-color: rgb(245, 103, 150);
+                color:black;
+            
+             }        
+             
+            a{
+                text-decoration: none;
+                color: red;
+                
+            }
+            #div2{
+        background-color:white;
+        height:603px;
+        text-align:center; 
+        width:180px;
+        float:left;
+        display: none;
+        margin-top: 2px;
+}
+            footer {
+  background-color:rgb(245, 103, 150) ;
+  margin-top: 650px;
+  text-align: center;
+  font-size: 14px;
+  color:white
+}
+#v{
+    height: 3vh;
+    display:flex;
+}
+
+#gir{
+    width:60px;
+    border-radius: 50%;
+    border:10px solid white ;
+}
+#gi{
+    width:60px;
+    border-radius: 50%;
+    border:10px solid white;
+}
+#gil{
+    width:60px;
+    border-radius: 50%;
+    border:10px solid white;
+}
+#gil:hover{
+    border-color: rgb(245, 103, 150);
+    width:140px;
+}
+#gir:hover{
+    border-color: rgb(245, 103, 150);
+    width:140px;
+}
+#gi:hover{
+    border-color: rgb(245, 103, 150);
+    width:140px;
+}
+#h{
+    font-size: 3rem;
+    margin-left: 20px;
+    color:rgb(245, 103, 150);
+    width: 0px;
+    height: 2px;
+}
+/* #gq{
+    background-image:url("https://wallpapercave.com/wp/wp7566451.jpg");
+    opacity: 5.5;
+    background-position: transparent;
+    
+} */
+
+           
+        </style>
+
+    </head>
+    <header>
+        <body id="gq">       <div id="div1" style="display:flex">
+        <img src="https://tse3.mm.bing.net/th?id=OIP.XrdRg04_ZGAaiLBo0TvgRwHaFj&pid=Api&P=0" width="100",height="150" id="i1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+        <div><img src="https://tse1.mm.bing.net/th?id=OIP.39kDMlw-B0Np5j3xbcbuSwHaE8&pid=Api&P=0" id="gir" alt="gir"><br><a href="fash.html">home&furniture</a></div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       <div><img src="https://tse3.mm.bing.net/th?id=OIP.YMWbYr2XEsDg4W8mD4RSCAHaD-&pid=Api&P=0" id="gi" alt="gi"><br><a href="grocery.html">gadgets</a></div>&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <div><img src="https://tse1.mm.bing.net/th?id=OIP.4a2giZFxeN1Art6TWiDKWwHaEK&pid=Api&P=0" id="gir" alt="gir"><br><a href="grocery.html">grocery</a></div>
+        </div>
+        
+        <div id="div2">
+            <h3>welcome,{{ session['username'] }}</h3>
+            <a href="/form"><button class="r">Home</button></a>
+            <a href="/wish"><button class="r">wishlist</button></a>
+            <a href="/cart"><button class="r">order</button></a>
+            <a href="/view"><button class="r">view profile</button></a>
+            <a href="/logout"><button class="r">logout</button></a>
+
+        </div>
+        </div>
+        <div>
+            <!DOCTYPE html>
+
+    <div class="container">
+      <h1 class="text-center my-5">Product Catalog</h1>
+      <hr>
+      <div class="row">
+        {% for item in data %}
+          <div class="col-md-4 col-sm-6">
+            <div class="card mb-4 shadow">
+              {% set photo = item[0]|b64encode %}
+              <img class="card-img-top" src="data:image/png;base64,{{ photo }}" alt="{{ item[1] }}" style="border:2px solid black",width='200px' height="200px">
+              <div class="card-body">
+                <h5 class="card-title">{{ item[1] }}</h5>
+                <p class="card-text">{{ item[4] }}</p>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item"><strong>Price:</strong> {{ item[2] }}</li>
+                  <li class="list-group-item"><strong>Category:</strong> {{ item[3] }}</li>
+              </ul>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper-base.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  </body>
+</html>
+
+        </div>
+        </div>
+       
+    </header>
+    </body>
+    <footer>
+        <p>&copy; 2023 My Website. All Rights Reserved.</p>
+    </footer>
+    <script>
+      const toggleBtn = document.getElementById('h');
+const div2 = document.getElementById('div2');
+
+toggleBtn.addEventListener('click', () => {
+    if (div2.style.display === 'none') {
+        div2.style.display = 'block';
+    } else {
+        div2.style.display = 'none';
+    }
+});
+        </script>
+</html>

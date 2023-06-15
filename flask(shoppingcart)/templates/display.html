@@ -1,0 +1,8 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        {% for h in images %}
+        <img src="{{ url_for('static', filename='images/' + h) }}" height="200" width="200" style="border:2px solid black">&nbsp&nbsp&nbsp
+        {% endfor %}
+    </body>
+</html>

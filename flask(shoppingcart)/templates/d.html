@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Shopping Cart</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="static/ima">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+        
+        * {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            outline: none;
+            border: none;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #ffff92, #f1f8ff);
+        }
+
+        .header {
+            border: 2px solid;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 2rem 9%;
+            background: linear-gradient(to right, #ffff92, #f1f8ff);
+            box-shadow: 0.2rem 0.2rem rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .header .logo {
+            font-size: 2.5rem;
+            font-weight: bolder;
+            color: green;
+        }
+
+        .header .navbar a {
+            font-size: 1rem;
+            margin: 0 1rem;
+            color: #000;
+            text-transform: capitalize;
+        }
+
+        .header .navbar a:hover {
+            color: green;
+        }
+
+        .header .icons {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .header .icons div {
+            border: 1px solid;
+            height: 4rem;
+            width: 4rem;
+            line-height: 4.5rem;
+            border-radius: .5rem;
+            background: #eee;
+            color: black;
+            font-size: 2rem;
+            text-align: center;
+            justify-content: space-between;
+        }
+
+        .header .icons div button {
+            border: 1px solid;
+            height: 4rem;
+            width: 4rem;
+            line-height: 4.5rem;
+            border-radius: .5rem;
+            background: #eee;
+            color: black;
+            font-size: 2rem;
+            text-align: center;
+            justify-content: space-between;
+        }
+
+        .header .icons div:hover {
+            background: green;
+        }
+
+        .header .icons div button:hover {
+            background: green;
+        }
+
+        .header .search-form {
+            border: 1px solid;
+            position: absolute;
+            top: 110%;
+            right: -110%;
+            max-width: 80rem;
+            height: 2rem;
+            background-color: #fff;
+            border-radius: 20px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            border-width: 0cm;
+            box-shadow: 0.1rem 0.2rem rgba(0, 0, 0, 0.1);
+        }
+
+        .header .search-form input {
+            height: 100%;
+            background-color: none;
+            text-transform: none;
+            font-size: 1rem;
+            padding: 0 1.5rem;
+        }
+
+        .header .search-form.active {
+            right: 2rem;
+            transition: .4s linear;
+        }
+
+        .header .search-form label {
+            font-size: 2rem;
+            padding-right: 1.5rem;
+        }
+
+        .container {
+            padding: 10px;
+        }
+
+        .search-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 5px;
+        }
+
+        .search-box {
+            align-items: center;
+            padding: 4px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .search-box input[type="text"] {
+            flex-grow: 1;
+            border: none;
+            padding: 5px;
+            font-size: 16px;
+            align-content: center;
+        }
+
+        .search-box input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            cursor: pointer;
+        }
+
+        footer {
+            padding: 20px;
+            text-align: center;
+            background-color: #eee;
+            background-color: #f1f1f1;
+        }
+        .dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+}
+
+.dropdown ul li {
+  padding: 12px 16px;
+}
+
+.dropdown ul li a {
+  color: #333;
+  text-decoration: none;
+}
+
+.dropdown:hover ul {
+  display: block;
+}
+#dropdown {
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  border: 1px solid #ccc;
+}
+
+#dropdown ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+#dropdown ul li {
+  padding: 10px;
+}
+
+#dropdown ul li a {
+  text-decoration: none;
+  color: #000;
+}
+
+#products-link:hover + #dropdown,
+#dropdown:hover {
+  display: block;
+}
+/* Style for the dropdown container */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Style for the dropdown button */
+.dropbtn {
+  background-color: #f9f9f9;
+  color: #333;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+/* Style for the dropdown content */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Style for the dropdown content links */
+.dropdown-content a {
+  color: #333;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Style for the dropdown content links on hover */
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+}
+
+/* Show the dropdown content when the dropdown button is clicked */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+#menu {
+  display: none;
+}
+
+#menu.show {
+  display: block;
+}
+
+
+
+    </style>
+</head>
+
+<body>
+  
+      
+    <li style="list-style: none;">
+        <a href="/cart" id="l">Product <b><i class="fa fa-caret-down" aria-hidden="true"></i></b></a>
+        <ul id="menu">
+          <li><a href="home.html">home&furniture</a></li>
+          <li><a href="loginu.html">gadgets</a></li>
+          <li><a href="grocery.html">grocery</a></li>
+        </ul>
+      </li>
+</body>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+  var link = document.getElementById("l");
+  var menu = document.getElementById("menu");
+  
+  link.addEventListener("click", function(e) {
+    e.preventDefault();
+    menu.classList.toggle("show");
+  });
+});
+
+</script>      
+   
+  
+    
+
+</html>

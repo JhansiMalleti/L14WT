@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Product Catalog</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="text-center my-5">Product Catalog</h1>
+      <hr>
+      <div class="row">
+        {% for item in data %}
+          <div class="col-md-4 col-sm-6">
+            <div class="card mb-4 shadow">
+              {% set photo = item[0]|b64encode %}
+              <img class="card-img-top" src="data:image/png;base64,{{ photo }}" alt="{{ item[1] }}" style="border:2px solid black",width='200px' height="400px">
+              <div class="card-body">
+                <h5 class="card-title">{{ item[1] }}</h5>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item"><strong>Price:</strong> {{ item[2] }}</li>
+                  <li class="list-group-item"><strong>Category:</strong> {{ item[3] }}</li>
+              </ul>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper-base.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  </body>
+</html>

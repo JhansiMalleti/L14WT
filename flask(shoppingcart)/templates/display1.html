@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Product Form</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			background-color: #f2f2f2;
+		}
+		form {
+			background-color: rgb(233, 196, 196);
+			padding: 20px;
+			margin: 20px auto;
+			max-width: 500px;
+			box-shadow: 0 0 10px hsla(346, 76%, 74%, 0.2);
+			border-radius: 5px;
+		}
+		label {
+			display: block;
+			margin-bottom: 10px;
+			font-weight: bold;
+		}
+		input[type="file"],
+		input[type="text"],
+		input[type="number"],
+		select,
+		textarea {
+			display: block;
+			margin-bottom: 20px;
+			width: 80%;
+			padding: 10px;
+			font-size: 16px;
+			border-radius: 5px;
+            border-bottom: #e24a5c;
+			border: none;
+			box-shadow: 0 0 5px rgba(212, 84, 123, 0.1);
+			background-color: #fbf6f8;
+		}
+		select {
+			height: 40px;
+		}
+		input[type="submit"] {
+			background-color: #e24a5c;
+			color: white;
+			padding: 10px 20px;
+			font-size: 16px;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+		}
+	</style>
+</head>
+<body>
+	<form method="POST" enctype="multipart/form-data" action="/submit">
+		<label for="photo">Photo:</label>
+		<input type="file" name="photo" id="photo">
+		
+		<label for="name">Name:</label>
+		<input type="text" name="name" id="name">
+		
+		<label for="price">Price:</label>
+		<input type="number" name="price" id="price">
+		
+		<label for="category">Category:</label>
+		<select name="category" id="category">
+			<option value="jewellary">jewellary</option>
+			<option value="sarees">sarees</option>
+			<option value="tops">tops</option>
+			<option value="mobile">mobile phones</option>
+			<option value="chairs">chairs</option>
+		</select>
+		
+		<label for="description">Description:</label>
+		<textarea name="description" id="description"></textarea>
+		
+		<label for="quantity">Quantity:</label>
+		<input type="number" name="quantity" id="quantity">
+		
+		<input type="submit" value="Submit">
+	</form>
+</body>
+</html>

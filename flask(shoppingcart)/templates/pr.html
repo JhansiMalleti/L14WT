@@ -1,0 +1,23 @@
+<html>
+    <body>
+        <form action="/cart" method="post">
+      <center>  <button onclick="window.location.href='/d'">home</button> </center>
+        <br><br>
+    </form>
+    <table border="1">
+        <tr>
+            <th>product image</th>
+            <th>price</th>
+            <!-- Add more columns as needed -->
+        </tr>
+        {% for row in data %}
+        <tr>
+            <td><img src="{{url_for('static',filename='images/'+row['photo'])}}" alt="img"></td>
+            <td>{{ row['price'] }}</td>
+            <!-- Add more columns as needed -->
+        </tr>
+        {% endfor %}
+    </table>
+
+    </body>
+</html>

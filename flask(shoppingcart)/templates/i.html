@@ -1,0 +1,348 @@
+
+<html>
+<head>
+    <title>Shopping Cart</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="static/ima">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+        * {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            outline: none;
+            border: none;
+            text-decoration: solid palevioletred;
+            text-transform: capitalize;
+        }
+
+        body {
+            margin-top: 200px;
+            padding: 130px;
+        background: linear-gradient(to right,#ffff92, #f1f8ff);
+      }
+
+        .header {
+            border: 2px solid;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 2rem ;
+            background: linear-gradient(to right, #ffff96, #f1f8ff);
+            box-shadow: 0.2rem 0.2rem rgba(0, 0, 0, 0.1);
+            z-index:1000;     
+        }
+
+        .header .logo {
+            font-size: 2.5rem;
+            font-weight: bolder;
+            color: green;
+        }
+
+        .header .navbar a {
+            font-size: 1rem;
+            margin: 0 1rem;
+            color: #000;
+     
+        }
+
+        .header .navbar a:hover {
+            color: green;
+        }
+
+        .header .icons {
+            order: 3;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .header .icons div {
+            border: 1px solid;
+            height: 4rem;
+            width: 4rem;
+            line-height: 4.5rem;
+            border-radius: .5rem;
+            background: #eee;
+            color: black;
+            font-size: 2rem;
+            text-align: center;
+            justify-content: space-between;
+        }
+
+        .header .icons div button {
+            border: 1px solid;
+            height: 4rem;
+            width: 4rem;
+            line-height: 4.5rem;
+            border-radius: .5rem;
+            background: #eee;
+            color: black;
+            font-size: 2rem;
+            text-align: center;
+            justify-content: space-between;
+        }
+
+        .header .icons div:hover {
+            background: green;
+        }
+
+        .header .icons div button:hover {
+            background: green;
+        }
+
+        .header .search-form {
+            border: 1px solid;
+            position: absolute;
+            top: 110%;
+            right: -110%;
+            max-width: 80rem;
+            height: 2rem;
+            background-color: #fff;
+            border-radius: 20px;
+            overflow: hidden;
+            display: flexbox;
+            align-items: center;
+            border-width: 0cm;
+            box-shadow: 0.1rem 0.2rem rgba(0, 0, 0, 0.1);
+        }
+        
+
+        .header .search-form input {
+            height: 100%;
+            background-color: none;
+            text-transform: none;
+            font-size: 1rem;
+            padding: 0 1.5rem;
+        }
+
+        .header .search-form.active {
+            right: 2rem;
+            transition: .4s linear;
+        }
+
+        .header .search-form label {
+            font-size: 2rem;
+            padding-right: 1.5rem;
+        }
+
+
+          .container {
+             position: fixed; 
+            /* margin-top: 2px; */
+            padding-left: 300px;
+        } 
+
+    /* #d{
+        display: none;
+    }  */
+    
+    .search-container {
+        padding:70px;
+        padding-left: 400px;
+        position: fixed;
+       display: flex;
+      justify-content: center;
+      margin-top: 5px;
+      align-items: center;
+    }
+
+    .search-box {
+      align-items: center;
+      padding: 4px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .search-box input[type="text"] {
+      flex-grow: 1;
+      border: none;
+      padding: 5px;
+      font-size: 16px;
+      align-content: center;
+    }
+
+    .search-box input[type="submit"] {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      cursor: pointer;
+    }
+  
+
+    .card-title{
+        width: 1000px;
+    }
+        
+
+        footer {
+            padding: 20px;
+            text-align: center;
+            background-color: #eee;
+            background-color: #f1f1f1;
+        }
+        /* drop */
+        
+   
+    </style>
+     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+</head>
+
+<body>
+    <header class="header">
+        <a href="#" class="logo"><i class="fa fa-shopping-basket" aria-hidden="true"></i>SmartTrolley</a>
+        <nav class="navbar">
+            <a href="/form">All</a>
+            
+            <a href="/cart">MyOrder</a>
+            <a href="/view">OffersZone</a>
+            <a href="/">Login</a>
+        </nav>
+        <div class="icons">
+            <div class="fa fa-heart" id="menu-btn"></div>
+            <div>
+                <form id="cart-form" action="{{ url_for('view_cart') }}" method="post">
+                    <input type="hidden" id="cart-data" name="cart-data">
+                    <button type="submit" id="cart-btn" class="fa fa-shopping-cart" onclick="submitCartData()"></button>
+                </form>
+                
+                
+                
+                
+            </div>
+            <div class="fa fa-user" id="login-btn"></div>
+        </div>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="container">
+            <div class="search-container">
+                <div class="search-box">
+                    <form action="/search" method="post">
+                  <input type="text" placeholder="Search" id="j" name ="j">
+                  <input type="submit" value="Search">
+                  </form>
+                </div>
+                </div> 
+                </div>
+        
+        
+    </header>
+    <!-- <div class="main-content"> -->
+        <!-- <div class="container">
+            <div class="search-container">
+                <div class="search-box">
+                    <form action="/signu" method="post">
+                  <input type="text" placeholder="Search">
+                  <input type="submit" value="Search">
+                  </form>
+                </div>
+                </div> 
+                </div> -->
+    
+        <!-- </div> -->
+<br>
+   
+        <h1 class="text-center my-5">Product Catalog</h1>
+        <hr>
+        <div class="row">
+            {% for item in data %}
+            <div class="col-md-4 col-sm-6">
+                <div class="card mb-4 shadow">
+                    {% set photo = item[0]|b64encode %}
+                    <img class="card-img-top" src="data:image/png;base64,{{ photo }}" alt="{{ item[1] }}" style="border:2px solid black" width="200px" height="400px">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ item[1] }}</h5>
+                        <!-- <p class="card-text">{{ item[4] }}</p> -->
+                        <!-- <p class="card-text" data-description="{{ item[4] }}"></p> -->
+                        <!-- <p class="card-text show-description" disabled>{{ item[4] }}</p> -->
+                        <!-- <button class="btn btn-primary" onclick="showDescription(this, '{{ item[4] }}')">View Description</button>
+ -->
+
+
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><strong>Price:</strong> {{ item[2] }}</li>
+                            <li class="list-group-item"><strong>Category:</strong> {{ item[3] }}</li>
+                        </ul>
+                        <!-- <button class="btn btn-primary" onclick="showDescription(this)" >View Description</button> -->
+                        <p class="card-text show-description" disabled style="display:none">{{ item[4] }}</p>
+                        <button class="btn btn-primary" onclick="showDescription(this, '{{ item[4] }}')" >View Description</button>
+                        <!-- <button class="btn btn-primary" onclick="ad()">Add To Cart</button> -->
+
+                       
+                        
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    
+    
+
+    <footer>
+        <p>&copy; 2023 My Website. All Rights Reserved.</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper-base.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+   <script>
+//     function submitCartData() {
+//     // Get the product data from the session
+//     var cartData = JSON.stringify({ productData: sessionStorage.getItem('cart') });
+
+//     // Set the cart data value in the hidden input field
+//     document.getElementById('cart-data').value = cartData;
+
+//     // Submit the form
+//     document.getElementById('cart-form').submit();
+// }
+
+    function ad(){
+        var d=0;
+         document.getElementsByClassName("btn btn-primary").innerHtml="Add to cart"+d;
+
+    }
+    document.addEventListener("DOMContentLoaded", function() {
+  var link = document.getElementById("l");
+  var menu = document.getElementById("menu");
+  
+  link.addEventListener("click", function(e) {
+    e.preventDefault();
+    menu.classList.toggle("show");
+  });
+});
+
+  
+    function showDescription(button, description) {
+        const cardBody = button.parentNode;
+        const cardText = cardBody.querySelector('.card-text');
+
+        cardText.classList.toggle('show-description');
+        
+        if (cardText.classList.contains('show-description')) {
+            button.innerText = 'Hide Description';
+            cardText.innerText = description;
+            cardText.style.display = "block";
+        } else {
+            button.innerText = 'View Description';
+            cardText.style.display = "none";
+        }
+    }
+
+
+        let searchform = document.querySelector('.search-form');
+        document.querySelector('#search-btn').onclick = () => {
+            searchform.classList.toggle('active');
+        }
+    </script>
+</body>
+
+</html>
